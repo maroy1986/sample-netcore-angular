@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataLayer.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoAPI.Controllers
@@ -7,6 +8,11 @@ namespace DemoAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly TestService testService;
+        public ValuesController()
+        {
+            this.testService = new TestService();
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -37,6 +43,12 @@ namespace DemoAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet("ValueFromData")]
+        public ActionResult<string> ValueFromData()
+        {
+            return this.testService.GetTestTextValue();
         }
     }
 }
