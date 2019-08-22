@@ -29,8 +29,9 @@ namespace DemoAPI.Controllers
         
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] LoginModel value)
         {
+            var shit = value.password;
         }
 
         // PUT api/values/5
@@ -50,5 +51,12 @@ namespace DemoAPI.Controllers
         {
             return this.testService.GetTestTextValue();
         }
+    }
+
+    public class LoginModel
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+
     }
 }
